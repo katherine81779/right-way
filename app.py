@@ -48,26 +48,37 @@ def getNextQuestion():
     else: # go to results page
         average = getAverage(answers)
         textInfo = text(average)
-        infoAPI.baseURL = infoAPI.getBasicURL(brand, make, year)
 
-
+        baseURL = infoAPI.getBasicURL(make, brand, year)
         # BASEURL is formed in app.py file
-        modelInfo = infoAPI.getCarDictBase(infoAPI.getBasicResult('https://www.carqueryapi.com/api/0.3/?cmd=getTrims&'))
+        modelURL = infoAPI.getBasicResult(baseURL)
+        modelInfo = infoAPI.getCarDictBase(modelURL)
 
         modelID = modelInfo['model_id']
 
         # Things that we need to print
+
         bodyType = modelInfo['model_body']
         seatsNum = modelInfo['model_seats']
         doorsNum = modelInfo['model_doors']
         origin = modelInfo['make_country']
         weight = modelInfo["model_weight_kg"] # Display: heavier cars makes it safer to drive
-        length = float(modelInfo["model_length_mm"])/1000
-        width = float(modelInfo["model_width_mm"])/1000
-        height = float(modelInfo["model_height_mm"])/1000 # Display: Taller people should get taller cars for comfortable driving
+        if (weight != None): weight = str(weight) + ' kilograms'
+        else: weight = "Not Available"
+        length = modelInfo["model_length_mm"]
+        if (length != None): length = str(float(length)/1000) + ' meters'
+        else: length = "Not Available"
+        width = modelInfo["model_width_mm"]
+        if (width != None): width = str(float(width)/1000) + ' meters'
+        else: width = "Not Available"
+        height = modelInfo["model_height_mm"] # Display: Taller people should get taller cars for comfortable driving
+        if (height != None): height = str(float(height)/1000) + ' meters'
+        else: height = "Not Available"
 
         family = "Not Friendly"
-        if (int(seatsNum) >= 4 and int(doorsNum) >=4):
+        if (seatsNum == None or doorsNum == None):
+            family = "Unavailable"
+        elif (int(seatsNum) >= 4 and int(doorsNum) >=4):
             family = "Friendly"
 
         info = [modelID, bodyType, seatsNum, doorsNum, origin, weight, length, width, height]
