@@ -14,6 +14,9 @@
                     <h1 class="mt-5">What's the car's mileage</h1>
                     <form action = "/inputAnswer" method = "post">
                       Answer:<br>
+                      {% if(error != ""): %}
+                        <p>ERROR: {{error}}</p>
+                      {% endif %}
                       <input type="text" name="answer"><br>
                       <br><input type="submit" value="CLICK ME"><br>
                     </form>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 app = Flask(__name__)
 
 # importing API here
@@ -12,6 +12,8 @@ year = ""
 # homepage link
 @app.route("/")
 def redir():
+    global q_num
+    q_num = 0
     return render_template('index.html')
 
 # go to about page
@@ -41,7 +43,7 @@ answers = {}
 @app.route("/question")
 def getNextQuestion():
     if (q_num < len(questions)):
-        return render_template(questions[q_num] + ".html")
+        return render_template(questions[q_num] + ".html", error = "")
     else: # go to results page
         average = getAverage(answers)
         textInfo = text(average)
@@ -52,15 +54,26 @@ def getNextQuestion():
 def storeAnswer():
     global q_num
     if request.method == 'POST':
+    
+            
         
         # store answer in answer dictionary
         answer = request.form['answer']
-        answers[q_num + 1] = answer
 
-        # increment question index!
-        q_num += 1
-        # direct to next question
-        return redirect("/question")
+        # check for valid input, aka a number that is a string
+        try: 
+            answer = float(answer)
+            answers[q_num + 1] = answer
+            # increment question index!
+            q_num += 1
+            # direct to next question
+            return redirect("/question")
+        except:
+            error = "invalid input"
+            return render_template(questions[q_num] + ".html", error = error)
+            
+
+      
 
 # method/algorithm to calculate the results?
 
