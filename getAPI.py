@@ -17,7 +17,7 @@ def getBasicResult(url):
 def getCarDictBase(searchInfo):
     carDict = searchInfo['Trims'][0]
     return carDict
-
+'''
 # BASEURL is formed in app.py file
 baseURL = "" 
 modelInfo = getCarDictBase(getBasicResult(baseURL))
@@ -30,9 +30,9 @@ seatsNum = modelInfo['model_seats']
 doorsNum = modelInfo['model_doors']
 origin = modelInfo['make_country']
 weight = modelInfo["model_weight_kg"] # Display: heavier cars makes it safer to drive
-length = modelInfo["model_length_mm"] 
-width = modelInfo["model_width_mm"]
-height = modelInfo["model_height_mm"] # Display: Taller people should get taller cars for comfortable driving
+length = float(modelInfo["model_length_mm"])/1000
+width = float(modelInfo["model_width_mm"])/1000
+height = float(modelInfo["model_height_mm"])/1000 # Display: Taller people should get taller cars for comfortable driving
 
 family = "Not Friendly"
 if (int(seatsNum) >= 4 and int(doorsNum) >=4):
@@ -43,3 +43,4 @@ info = [modelID, bodyType, seatsNum, doorsNum, origin, weight, length, width, he
 for i in range(len(info)):
     if (info[i] == None):
         info[i] = "Not Available"
+'''

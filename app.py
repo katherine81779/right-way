@@ -50,10 +50,36 @@ def getNextQuestion():
         textInfo = text(average)
         infoAPI.baseURL = infoAPI.getBasicURL(brand, make, year)
 
-        return render_template('report.html', score = average, displayText = textInfo, body = infoAPI.bodyType, 
-                                seats = infoAPI.seatsNum, doors = infoAPI.doorsNum, origin = infoAPI.origin, 
-                                weight = infoAPI.weight, length = infoAPI.length, width = infoAPI.width, 
-                                height = infoAPI.height, family = infoAPI.family )  
+
+        # BASEURL is formed in app.py file
+        modelInfo = infoAPI.getCarDictBase(infoAPI.getBasicResult('https://www.carqueryapi.com/api/0.3/?cmd=getTrims&'))
+
+        modelID = modelInfo['model_id']
+
+        # Things that we need to print
+        bodyType = modelInfo['model_body']
+        seatsNum = modelInfo['model_seats']
+        doorsNum = modelInfo['model_doors']
+        origin = modelInfo['make_country']
+        weight = modelInfo["model_weight_kg"] # Display: heavier cars makes it safer to drive
+        length = float(modelInfo["model_length_mm"])/1000
+        width = float(modelInfo["model_width_mm"])/1000
+        height = float(modelInfo["model_height_mm"])/1000 # Display: Taller people should get taller cars for comfortable driving
+
+        family = "Not Friendly"
+        if (int(seatsNum) >= 4 and int(doorsNum) >=4):
+            family = "Friendly"
+
+        info = [modelID, bodyType, seatsNum, doorsNum, origin, weight, length, width, height]
+
+        for i in range(len(info)):
+            if (info[i] == None):
+                info[i] = "Not Available"
+
+        return render_template('report.html', score = average, displayText = textInfo, body = bodyType, 
+                                seats = seatsNum, doors = doorsNum, origin = origin, 
+                                weight = weight, length = length, width = width, 
+                                height = height, family = family )  
 
 # input/form data collection for the question
 @app.route("/inputAnswer", methods = ['POST', 'GET'])
@@ -142,10 +168,11 @@ def text(finalRate):
     medium = "The car that you're interested in buying is in okay quality. I reccommend bargaining for a \
                lower price or asking the owner to fix some parts of the car. "
     medium_bad = "This isn't the worst car we've seen. But that doesn't mean you should be so quick to \
-                  purchase this car. Maybe try lookin"
+                  purchase this car. Maybe try looking into some other cars. "
     bad = 'Bad news. Unfortunately the car you are looking for is not the best quality and not the safest \
         for you to drive. We hope that you do  not continue with this purchase at all! I suggest that you do \
          more research on finding the best car for you. But good luck!'
+
     if (finalRate >= 1 and finalRate < 2):
         return bad
     elif (finalRate >= 2 and finalRate < 4):
