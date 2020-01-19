@@ -142,7 +142,7 @@ def ageRating( age ):
 def batteryChange(years):
     if (years > 3): return 1
     elif (years >= 2.5 and years <=3): return 3.5
-    elif (years < 2.5 and years < 2): return 6
+    elif (years < 2.5 and years > 2): return 6
     elif (years <= 1): return 10
     else: return 8
 
