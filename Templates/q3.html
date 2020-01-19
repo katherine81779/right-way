@@ -1,29 +1,39 @@
 <!DOCTYPE html>
-<html>  
+<html>
+
 <head>
 </head>
 
 <body>
 
-    {% include 'header.html' %}
- 
-    <!--Page Content-->
-    <div class="container">
-                <div class="row">
-                  <div class="col-lg-12 text-center">
-                    <h1 class="mt-5">How many years has it been since the car's last battery change?</h1>
-                    <form action = "/inputAnswer" method = "post">
-                      Answer:<br>
-                      {% if(error != ""): %}
-                      <p>ERROR: {{error}}</p>
-                      {% endif %}
-                      <input type="text" name="answer"><br>
-                      <br><input type="submit" value="CLICK ME"><br>
-                    </form>
-                  </div>
-                </div>
+  {% include 'header.html' %}
+
+  <!--Page Content-->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <h1 class="mt-5">How many years has it been since the car's last battery change?</h1>
+        <form class="card card-signin my-5" action="/inputAnswer" method="post">
+          <div class="card-body">
+            <div class="form-label-group">
+              <p>Answer</p>
+              {% if(error != ""): %}
+              <p>ERROR: {{error}}</p>
+              {% endif %}
+              <input type="text" class="form-control" name="answer" placeholder="Enter a numerical value (Ex: 2)"
+                required autofocus><br>
+              <br>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" input type="submit">CONTINUE</button>
+              <br>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    <br><br><br><br>
-    {% include 'footer.html' %}
+  </div>
+  <br><br><br><br>
+  {% include 'footer.html' %}
+
 </body>
+
 </html>

@@ -27,28 +27,33 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <div class="card card-signin my-5">
+        <h1 class="mt-5">Want to Learn More About the Used Car You're Interested In?</h1>
+        <form class="card card-signin my-5" action="/car" method="post">
           <div class="card-body">
-            <form class="form-signin">
-              <div class="form-label-group">
-		<p>Make/Manufacturer</p>
-                <input type="make" id="inputMake" class="form-control" placeholder="Enter make of car here" required autofocus>
-              </div><br>
-              <div class="form-label-group">
-                <p>Model</p>
-                <input type="model" id="inputModel" class="form-control" placeholder="Enter model of car here" required autofocus>
-              </div><br>
-	      <div class="form-label-group">
-                <p>Year</p>
-                <input type="year" id="inputYear" class="form-control" placeholder="Enter year of car here" required autofocus>
-              </div><br>
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit"k>Get Started</button>
-            </form>
+            <div class="form-label-group">
+              <p>Make/Manufacturer</p>
+              <input type="text" id="inputMake" class="form-control" name="make" placeholder="Enter make of car here"
+                required autofocus>
+            </div><br>
+            <div class="form-label-group">
+              <p>Model</p>
+              <input type="text" id="inputModel" class="form-control" name="brand" placeholder="Enter model of car here"
+                required autofocus>
+            </div><br>
+            <div class="form-label-group">
+              <p>Year</p>
+              <input type="text" id="inputYear" class="form-control" name="year" placeholder="Enter year of car here"
+                required autofocus>
+            </div><br>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" input type="submit">Get Started</button>
+            <br>
           </div>
-        </div>
       </div>
+      </form>
     </div>
   </div>
+
 
   <br><br><br><br>
   {% include 'footer.html' %}
