@@ -14,6 +14,11 @@ year = ""
 def redir():
     return render_template('index.html')
 
+# go to about page
+@app.route("/about")
+def goToAbout():
+    return render_template('about.html')
+
 @app.route("/car", methods = ['POST', 'GET'])
 def storeCarInfo():
     global brand
