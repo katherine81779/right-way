@@ -176,6 +176,7 @@ def find_average(mileageRate, ageRate, batteryRate, oilRate):
 # based on the average rate of the car, this will get displayed
 # for the user!
 def text(finalRate):
+    finalRate = float(finalRate)
     good = "Congratulations! Based on what you have given us, we believe that the car is in good shape. \
             Given that the overall quality based off of the questions that you have answered, now all \
             you have to do is bargain it for the right price.  "
@@ -196,7 +197,7 @@ def text(finalRate):
         return medium_bad
     elif (finalRate >= 4 and finalRate < 6):
         return medium
-    elif (finalRate <= 6 and finalRate < 8):
+    elif (finalRate >= 6 and finalRate < 8):
         return medium_good
     elif (finalRate >= 8 and finalRate <= 10):
         return good
