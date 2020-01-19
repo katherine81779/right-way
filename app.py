@@ -192,7 +192,7 @@ def text(finalRate):
         return medium
     elif (finalRate <= 6 and finalRate < 8):
         return medium_good
-    elif (finalRate >= 8 and finalRate < 10):
+    elif (finalRate >= 8 and finalRate <= 10):
         return good
 
 def getAverage(answers):
