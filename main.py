@@ -5,9 +5,9 @@ app = Flask(__name__)
 
 # private variables here 
     # input from the user
-    brand = ""
-    make = "" 
-    year = ""
+brand = ""
+make = ""
+year = ""
 
 # homepage link
 @app.route("/")
@@ -15,7 +15,7 @@ def redir():
     return render_template('index.html')
 
 @app.route("/car", methods = ['POST', 'GET'])
-def storeCarInfo()
+def storeCarInfo():
     global brand
     global make
     global year
@@ -23,7 +23,7 @@ def storeCarInfo()
     if request.method == 'POST':
         brand = request.form['brand']
         make = request.form['make']
-        year = request.form['brand']
+        year = request.form['year']
 
         return redirect('/question')
 
@@ -34,7 +34,7 @@ answers = {}
 
 # go to next question: gets called when you submit answer to each q
 @app.route("/question")
-def getNextQuestion()
+def getNextQuestion():
     if (q_num < len(questions)):
         return render_template(questions[q_num] + ".html")
     else: # go to results page
@@ -54,10 +54,6 @@ def storeAnswer():
         q_num += 1
         # direct to next question
         return render_template(questions[q_num] + ".html")
-
-#input/form data collection for the question 
-
-
 
 # method/algorithm to calculate the results?
 
