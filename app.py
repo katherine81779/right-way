@@ -112,8 +112,13 @@ def storeAnswer():
             error = "invalid input"
             return render_template(questions[q_num] + ".html", error = error)
             
-
-      
+@app.route("/reset")
+def resetData():
+    global q_num
+    q_num = 0
+    global answers
+    answers = {}
+    return redirect("/")
 
 # method/algorithm to calculate the results?
 
