@@ -53,7 +53,7 @@ def storeAnswer():
         # increment question index!
         q_num += 1
         # direct to next question
-        return render_template(questions[q_num] + ".html")
+        return redirect("/question")
 
 # method/algorithm to calculate the results?
 
