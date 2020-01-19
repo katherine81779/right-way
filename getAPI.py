@@ -18,7 +18,8 @@ def getCarDictBase(searchInfo):
     carDict = searchInfo['Trims'][0]
     return carDict
 
-baseURL = getBasicURL('Toyota', 'Camry', '2008')
+# BASEURL is formed in app.py file
+baseURL = "" 
 modelInfo = getCarDictBase(getBasicResult(baseURL))
 
 modelID = modelInfo['model_id']
@@ -33,9 +34,9 @@ length = modelInfo["model_length_mm"]
 width = modelInfo["model_width_mm"]
 height = modelInfo["model_height_mm"] # Display: Taller people should get taller cars for comfortable driving
 
-family = False
-if (seats >= 4 and doorsNum >=4):
-    family = True 
+family = "Not Friendly"
+if (int(seatsNum) >= 4 and int(doorsNum) >=4):
+    family = "Friendly"
 
 info = [modelID, bodyType, seatsNum, doorsNum, origin, weight, length, width, height]
 
