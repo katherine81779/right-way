@@ -28,7 +28,7 @@ def storeCarInfo():
         return redirect('/question')
 
 # QUESTIONS
-questions = ["q1", "q2"] # add to this later
+questions = ["q1", "q2","q3","q4"] # add to this later
 q_num = 0 # keeps track of the q number we're on
 answers = {}
 
@@ -38,7 +38,7 @@ def getNextQuestion():
     if (q_num < len(questions)):
         return render_template(questions[q_num] + ".html")
     else: # go to results page
-        return render_template('')  
+        return render_template('report.html')  
 
 # input/form data collection for the question
 @app.route("/inputAnswer", methods = ['POST', 'GET'])
