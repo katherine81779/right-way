@@ -55,6 +55,7 @@ def getNextQuestion():
         modelInfo = infoAPI.getCarDictBase(modelURL)
 
         modelID = modelInfo['model_id']
+        print(modelID)
 
         # Things that we need to print
 
