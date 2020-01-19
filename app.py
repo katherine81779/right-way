@@ -90,7 +90,7 @@ def getNextQuestion():
         return render_template('report.html', score = average, displayText = textInfo, body = bodyType, 
                                 seats = seatsNum, doors = doorsNum, origin = origin, 
                                 weight = weight, length = length, width = width, 
-                                height = height, family = family )  
+                                height = height, family = family, finalText = text(average) )  
 
 # input/form data collection for the question
 @app.route("/inputAnswer", methods = ['POST', 'GET'])
@@ -142,7 +142,7 @@ def ageRating( age ):
 def batteryChange(years):
     if (years > 3): return 1
     elif (years >= 2.5 and years <=3): return 3.5
-    elif (years < 2.5 and years < 2): return 6
+    elif (years < 2.5 and years > 2): return 6
     elif (years <= 1): return 10
     else: return 8
 
@@ -192,7 +192,7 @@ def text(finalRate):
         return medium
     elif (finalRate <= 6 and finalRate < 8):
         return medium_good
-    elif (finalRate >= 8 and finalRate < 10):
+    elif (finalRate >= 8 and finalRate <= 10):
         return good
 
 def getAverage(answers):
