@@ -90,7 +90,7 @@ def getNextQuestion():
         return render_template('report.html', score = average, displayText = textInfo, body = bodyType, 
                                 seats = seatsNum, doors = doorsNum, origin = origin, 
                                 weight = weight, length = length, width = width, 
-                                height = height, family = family )  
+                                height = height, family = family, finalText = text(average) )  
 
 # input/form data collection for the question
 @app.route("/inputAnswer", methods = ['POST', 'GET'])
