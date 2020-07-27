@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+
+  {% include 'header.html' %}
+
+  <!--Page Content-->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <h1 class="mt-5">How many miles have been used since the car's last oil change?</h1>
+        <form class="card card-signin my-5" action="/inputAnswer" method="post">
+          <div class="card-body">
+            <div class="form-label-group">
+              <p>Answer</p>
+              {% if(error != ""): %}
+              <p>ERROR: {{error}}</p>
+              {% endif %}
+              <input type="text" class="form-control" name="answer" placeholder="Enter a numerical value (Ex: 0.5)"
+                required autofocus><br>
+              <br>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" input type="submit">CONTINUE</button>
+              <br>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br>
+  {% include 'footer.html' %}
+
+</body>
+
+</html>

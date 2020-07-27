@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>RightWay Home</title>
+</head>
+
+<body>
+
+  {% include 'header.html' %}
+
+  <!-- Header -->
+  <header class="bg-primary py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-4">
+          <img src="/static/right-away-logo.png" width="350" height="350">
+        </div>
+        <div class="col-lg-8">
+          <h1 class="display-4 text-white mt-5 mb-2">RightWay</h1>
+          <p class="lead mb-5 text-white-50">A web application where users can enter
+            information about a used car they are inquiring and are provided a rating
+            of that car along with definitions of things they should consider in their purchase.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!--Page Content-->
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <h1 class="mt-5">Want to Learn More About the Used Car You're Interested In?</h1>
+        <form class="card card-signin my-5" action="/car" method="post">
+          <div class="card-body">
+            <div class="form-label-group">
+              <p>Make/Manufacturer</p>
+              <input type="text" id="inputMake" class="form-control" name="make" placeholder="Enter make of car here"
+                required autofocus>
+            </div><br>
+            <div class="form-label-group">
+              <p>Model</p>
+              <input type="text" id="inputModel" class="form-control" name="brand" placeholder="Enter model of car here"
+                required autofocus>
+            </div><br>
+            <div class="form-label-group">
+              <p>Year</p>
+              <input type="text" id="inputYear" class="form-control" name="year" placeholder="Enter year of car here"
+                required autofocus>
+            </div><br>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" input type="submit">Get Started</button>
+            <br>
+          </div>
+      </div>
+      </form>
+    </div>
+  </div>
+
+
+  <br><br><br><br>
+  {% include 'footer.html' %}
+</body>
+
+
+</html>
